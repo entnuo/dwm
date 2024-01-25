@@ -30,6 +30,7 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
 	"st", NULL,
+        "sh", "-c", "${HOME}/.scripts/welcome", NULL,
 	NULL /* terminate */
 };
 
@@ -104,7 +105,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	{ Mod1Mask,             		XK_Tab,    altTabStart,	   {0} },
+	{ Mod1Mask,            		XK_Tab,    altTabStart,	   {0} },
+	{ MODKEY,                       XK_n,      shiftview,      { .i = +1 } },
+	{ MODKEY,                       XK_p,      shiftview,      { .i = -1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
