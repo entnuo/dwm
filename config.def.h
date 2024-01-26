@@ -9,8 +9,8 @@ static const unsigned int maxWTab 			= 600;	/* tab menu width */
 static const unsigned int maxHTab 			= 200;	/* tab menu height */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 5;        /* gaps between windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 8;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -21,16 +21,21 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
+static const char col_white[]       = "#ffffff";
 static const char col_cyan[]        = "#005577";
+static const char col_grayb[]       = "#343434";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_grayb },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_white },
 };
 
 static const char *const autostart[] = {
-	"st", NULL,
+        "sxhkd", NULL,
+        "redshift", NULL,
+        "fcitx5", "||", "fcitx", NULL,
         "sh", "-c", "${HOME}/.scripts/welcome", NULL,
+        "sh", "-c", "${HOME}/.scripts/fehbg", NULL,
 	NULL /* terminate */
 };
 
@@ -43,8 +48,16 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "firefox",     NULL,       NULL,       1 << 0,       0,           -1 },
+	{ "discord",     NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "steam",       NULL,       NULL,       1 << 3,       1,           -1 },
+	{ "Anki",        NULL,       NULL,       1 << 4,       1,           -1 },
+	{ "Pavucontrol", NULL,       NULL,       1 << 5,       1,           -1 },
+	{ "Gimp",        NULL,       NULL,       0,            1,           -1 },
+	{ "keepassxc",   NULL,       NULL,       0,            1,           -1 },
+	{ "mpv",         NULL,       NULL,       0,            1,           -1 },
+	{ "Nsxiv",       NULL,       NULL,       0,            1,           -1 },
+	{ "MEGAsync",    NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -106,8 +119,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ Mod1Mask,            		XK_Tab,    altTabStart,	   {0} },
-	{ MODKEY,                       XK_n,      shiftview,      { .i = +1 } },
-	{ MODKEY,                       XK_p,      shiftview,      { .i = -1 } },
+	{ MODKEY,                       XK_bracketleft,      shiftview,      { .i = +1 } },
+	{ MODKEY,                       XK_bracketright,      shiftview,      { .i = -1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
