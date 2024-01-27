@@ -31,7 +31,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-        "sxhkd", NULL,
+//        "sxhkd", NULL,
         "redshift", NULL,
         "fcitx5", "||", "fcitx", NULL,
         "sh", "-c", "${HOME}/.scripts/welcome", NULL,
