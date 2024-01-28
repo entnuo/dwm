@@ -33,7 +33,7 @@ static const char *colors[][3]      = {
 static const char *const autostart[] = {
         "redshift", NULL,
         "sh", "-c", "fcitx5 || fcitx", NULL,
-        "sh", "-c", "sleep 1s && sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
+        "sh", "-c", "sleep 5s && sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
         "sh", "-c", "${HOME}/.scripts/fehbg", NULL,
         "sh", "-c", "${HOME}/.scripts/welcome", NULL,
 	NULL /* terminate */
