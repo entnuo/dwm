@@ -5,8 +5,8 @@ static const unsigned int tabModKey 		= 0x40;	/* if this key is hold the alt-tab
 static const unsigned int tabCycleKey 		= 0x17;	/* if this key is hit the alt-tab program moves one position forward in clients stack. This key must be the same as key that is used to active functin altTabStart */
 static const unsigned int tabPosY 			= 1;	/* tab position on Y axis, 0 = bottom, 1 = center, 2 = top */
 static const unsigned int tabPosX 			= 1;	/* tab position on X axis, 0 = left, 1 = center, 2 = right */
-static const unsigned int maxWTab 			= 600;	/* tab menu width */
-static const unsigned int maxHTab 			= 200;	/* tab menu height */
+static const unsigned int maxWTab 			= 400;	/* tab menu width */
+static const unsigned int maxHTab 			= 100;	/* tab menu height */
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
