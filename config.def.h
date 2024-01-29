@@ -28,11 +28,11 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
         "slstatus", NULL,
-        "killall redshift ; redshift", NULL,
         "sh", "-c", "fcitx5 || fcitx", NULL,
         "sh", "-c", "${HOME}/.scripts/fehbg", NULL,
         "sh", "-c", "${HOME}/.scripts/welcome", NULL,
-        "sh", "-c", "killall sxhkd ; sleep 15s && sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
+        "sh", "-c", "pgrep -x sxhkd > /dev/null || sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
+        "sh", "-c", "pgrep -x redshift > /dev/null || redshift", NULL,
 	NULL /* terminate */
 };
 
