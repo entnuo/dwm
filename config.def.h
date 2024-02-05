@@ -89,6 +89,7 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *termfm[]  = { "sh", "-c", "st nnn -H", NULL };
 static const char *lockscreen[]  = { "slock", NULL };
 static const char *exitdwm[]  = { "sh", "-c", "killall -p dwm", NULL }; // i'm using a while loop to use dwm, this will exit to tty
+static const char *sdfl[]  = { "sh", "-c", "sdfl", NULL }; // simple (or stupid) dmenu file manager
 
 static const Key keys[] = {
 	/* modifier                     key                   function        argument */
@@ -97,6 +98,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_n,                 spawn,          {.v = termfm } },
 	{ MODKEY|ShiftMask,             XK_x,                 spawn,          {.v = lockscreen } },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,                 spawn,          {.v = exitdwm } },
+	{ MODKEY,                       XK_f,                 spawn,          {.v = sdfl } },
 	{ MODKEY,                       XK_b,                 togglebar,      {0} },
 	{ MODKEY,                       XK_j,                 focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                 focusstack,     {.i = -1 } },
