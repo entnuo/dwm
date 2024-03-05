@@ -32,7 +32,7 @@ static const char *const autostart[] = {
         "sh", "-c", "${HOME}/.scripts/fehbg", NULL,
         "sh", "-c", "${HOME}/.scripts/welcome", NULL,
         "sh", "-c", "pgrep -x redshift > /dev/null || redshift", NULL,
-        "sh", "-c", "sleep 10 && pgrep -x sxhkd > /dev/null || sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
+        "sh", "-c", "sleep 5 && pgrep -x sxhkd > /dev/null || sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
 	NULL /* terminate */
 };
 
