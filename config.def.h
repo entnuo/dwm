@@ -86,19 +86,19 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "sh", "-c", "dmenu_run_history || dmenu_run", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *termfm[]  = { "sh", "-c", "st nnn -H", NULL };
-static const char *lockscreen[]  = { "slock", NULL };
-static const char *exitdwm[]  = { "sh", "-c", "killall -p dwm", NULL }; // i'm using a while loop to use dwm, this will exit to tty
-static const char *sdfl[]  = { "sh", "-c", "sdfl", NULL }; // simple (or stupid) dmenu file manager
+//static const char *termfm[]  = { "sh", "-c", "st nnn -H", NULL };
+//static const char *lockscreen[]  = { "slock", NULL };
+//static const char *exitdwm[]  = { "sh", "-c", "killall -p dwm", NULL }; // i'm using a while loop to use dwm, this will exit to tty
+//static const char *sdfl[]  = { "sh", "-c", "sdfl", NULL }; // simple (or stupid) dmenu file manager
 
 static const Key keys[] = {
 	/* modifier                     key                   function        argument */
 	{ MODKEY|ShiftMask,             XK_e,                 spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,            spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_n,                 spawn,          {.v = termfm } },
-	{ MODKEY|ShiftMask,             XK_x,                 spawn,          {.v = lockscreen } },
-	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,                 spawn,          {.v = exitdwm } },
-	{ MODKEY,                       XK_f,                 spawn,          {.v = sdfl } },
+	{ MODKEY,                       XK_n,                 spawn,          SHCMD("st nnn -H -d") },
+	{ MODKEY|ShiftMask,             XK_x,                 spawn,          SHCMD("slock") },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,                 spawn,          SHCMD("killall -p dwm") },
+	{ MODKEY,                       XK_f,                 spawn,          SHCMD("$HOME/.scripts/sdfl") },
 	{ MODKEY,                       XK_b,                 togglebar,      {0} },
 	{ MODKEY,                       XK_j,                 focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                 focusstack,     {.i = -1 } },
