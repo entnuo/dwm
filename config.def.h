@@ -49,7 +49,7 @@ static const Rule rules[] = {
 	{ "firefox",     NULL,       NULL,       1 << 0,       0,           -1 },
 	{ NULL,          NULL,      "Picture-in-Picture",       0,       1,           -1 },
 	{ "discord",     NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "steam",       NULL,       NULL,       1 << 3,       1,           -1 },
+	{ "steam",       NULL,    "Steam",       1 << 3,       1,           -1 },
 	{ "Anki",        NULL,       NULL,       1 << 4,       1,           -1 },
 	{ "Pavucontrol", NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "pavucontrol", NULL,       NULL,       1 << 5,       0,           -1 },
