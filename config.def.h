@@ -15,7 +15,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "monospace:size=10","Noto Sans CJK JP:size=10","waffle:size=10" };
+static const char *fonts[]          = { "Unifont:size=10:antialias=true:autohint=true","monospace:size=10","Noto Sans CJK JP:size=10","waffle:size=10" };
 
 static const char col_white[]       = "#ffffff";
 static const char col_grayb[]       = "#343434";
@@ -32,7 +32,7 @@ static const char *const autostart[] = {
         "sh", "-c", "${HOME}/.scripts/fehbg", NULL,
         "sh", "-c", "${HOME}/.scripts/welcome", NULL,
         "sh", "-c", "pgrep -x redshift > /dev/null || redshift", NULL,
-        "sh", "-c", "sleep 5 && pgrep -x sxhkd > /dev/null || sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
+        "sh", "-c", "sleep 2 && pgrep -x sxhkd > /dev/null || sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
 	NULL /* terminate */
 };
 
@@ -47,11 +47,13 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "firefox",     NULL,       NULL,       1 << 0,       0,           -1 },
+	{ NULL,          NULL,      "Picture-in-Picture",       0,       1,           -1 },
 	{ "discord",     NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "steam",       NULL,       NULL,       1 << 3,       1,           -1 },
 	{ "Anki",        NULL,       NULL,       1 << 4,       1,           -1 },
-	{ "Pavucontrol", NULL,       NULL,       1 << 5,       1,           -1 },
-	{ "Gimp",        NULL,       NULL,       0,            1,           -1 },
+	{ "Pavucontrol", NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "pavucontrol", NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "Gimp",        NULL,       NULL,       0,            0,           -1 },
 	{ "keepassxc",   NULL,       NULL,       0,            1,           -1 },
 	{ "mpv",         NULL,       NULL,       0,            1,           -1 },
 	{ "Nsxiv",       NULL,       NULL,       0,            1,           -1 },
@@ -86,10 +88,6 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "sh", "-c", "dmenu_run_history || dmenu_run", NULL };
 static const char *termcmd[]  = { "st", NULL };
-//static const char *termfm[]  = { "sh", "-c", "st nnn -H", NULL };
-//static const char *lockscreen[]  = { "slock", NULL };
-//static const char *exitdwm[]  = { "sh", "-c", "killall -p dwm", NULL }; // i'm using a while loop to use dwm, this will exit to tty
-//static const char *sdfl[]  = { "sh", "-c", "sdfl", NULL }; // simple (or stupid) dmenu file manager
 
 static const Key keys[] = {
 	/* modifier                     key                   function        argument */
@@ -112,6 +110,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,                 setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_s,                 setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,                 setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_s,                 togglesticky,   {0} },
 	{ MODKEY|ShiftMask,             XK_f,                 fullscreen,     {0} },
 	{ MODKEY,                       XK_space,             setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,             togglefloating, {0} },
