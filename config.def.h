@@ -47,6 +47,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "Ardour",      NULL,       NULL,       0,            0,           -1 },
 	{ "firefox",     NULL,       NULL,       1 << 0,       0,           -1 },
 	{ NULL,          NULL,      "Picture-in-Picture",     ~0,       1,           -1 },
 	{ "discord",     NULL,       NULL,       1 << 2,       0,           -1 },
@@ -64,7 +65,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -94,7 +95,7 @@ static const Key keys[] = {
 	/* modifier                     key                   function        argument */
 	{ MODKEY|ShiftMask,             XK_e,                 spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,            spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_n,                 spawn,          SHCMD("st nnn -H -d") },
+	{ MODKEY,                       XK_n,                 spawn,          SHCMD("st nnn -HD") },
 	{ MODKEY|ShiftMask,             XK_x,                 spawn,          SHCMD("slock") },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,                 spawn,          SHCMD("killall -p dwm") },
 	{ MODKEY,                       XK_f,                 spawn,          SHCMD("$HOME/.scripts/sdfl") },
