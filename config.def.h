@@ -24,9 +24,10 @@ static const char col_white[]       = "#ffffff";
 static const char col_grayb[]       = "#343434";
 static const char col_black[]       = "#191919";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_white, col_black,  col_grayb },
-	[SchemeSel]  = { col_black, col_white,  col_white },
+	/*                  fg         bg         border   */
+	[SchemeNorm]   = { col_white, col_black, col_grayb },
+	[SchemeSel]    = { col_black, col_white, col_white },
+	[SchemeTitle]  = { col_white, col_black, col_black },
 };
 
 static const char *const autostart[] = {
