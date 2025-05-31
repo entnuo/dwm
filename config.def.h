@@ -3,20 +3,22 @@
 /* alt-tab configuration */
 static const unsigned int tabModKey 		= 0x40;	/* if this key is hold the alt-tab functionality stays acitve. This key must be the same as key that is used to active functin altTabStart `*/
 static const unsigned int tabCycleKey 		= 0x17;	/* if this key is hit the alt-tab program moves one position forward in clients stack. This key must be the same as key that is used to active functin altTabStart */
-static const unsigned int tabPosY 			= 1;	/* tab position on Y axis, 0 = bottom, 1 = center, 2 = top */
-static const unsigned int tabPosX 			= 1;	/* tab position on X axis, 0 = left, 1 = center, 2 = right */
-static const unsigned int maxWTab 			= 400;	/* tab menu width */
-static const unsigned int maxHTab 			= 100;	/* tab menu height */
+static const unsigned int tabPosY 		= 1;	/* tab position on Y axis, 0 = bottom, 1 = center, 2 = top */
+static const unsigned int tabPosX 		= 1;	/* tab position on X axis, 0 = left, 1 = center, 2 = right */
+static const unsigned int maxWTab 		= 400;	/* tab menu width */
+static const unsigned int maxHTab 		= 100;	/* tab menu height */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 8;        /* gaps between windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int gappx     = 6;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "Unifont:size=10:antialias=true:autohint=true","monospace:size=10","Noto Sans CJK JP:size=10","waffle:size=10" };
+static const char *fonts[]          = { "Unifont:size=10:antialias=true:autohint=true","monospace:size=10","Noto Color Emoji:size=10","waffle:size=10" };
+//static const char *fonts[]          = { "Noto Sans Mono CJK JP:size=10:antialias=true","Noto Color Emoji:size=10","monospace:size=10","waffle:size=10" };
+
 
 static const char col_white[]       = "#ffffff";
 static const char col_grayb[]       = "#343434";
@@ -28,38 +30,41 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-        "slstatus", NULL,
+        "aslstatus", NULL,
         "sh", "-c", "fcitx5 || fcitx", NULL,
         "sh", "-c", "${HOME}/.scripts/fehbg", NULL,
         "sh", "-c", "${HOME}/.scripts/welcome", NULL,
-        "sh", "-c", "pgrep -x redshift > /dev/null || redshift", NULL,
+        //"sh", "-c", "pgrep -x redshift > /dev/null || redshift", NULL,
         "sh", "-c", "sleep 2 && pgrep -x sxhkd > /dev/null || sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
 	NULL /* terminate */
 };
 
 /* tagging */
 //static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tags[] = { "一", "二", "三", "ゲーム", "勉強", "音楽" };
+static const char *tags[] = { "一", "二", "ゲーム", "勉強", "音楽" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Ardour",      NULL,       NULL,       0,            0,           -1 },
-	{ "firefox",     NULL,       NULL,       1 << 0,       0,           -1 },
-	{ NULL,          NULL,      "Picture-in-Picture",     ~0,       1,           -1 },
-	{ "discord",     NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "steam",       NULL,    "Steam",       1 << 3,       1,           -1 },
-	{ "Anki",        NULL,       NULL,       1 << 4,       1,           -1 },
-	{ "Pavucontrol", NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "pavucontrol", NULL,       NULL,       1 << 5,       0,           -1 },
-	{ "Gimp",        NULL,       NULL,       0,            0,           -1 },
-	{ "keepassxc",   NULL,       NULL,       0,            1,           -1 },
-	{ "mpv",         NULL,       NULL,       0,            1,           -1 },
-	{ "Nsxiv",       NULL,       NULL,       0,            1,           -1 },
-	{ "MEGAsync",    NULL,       NULL,       0,            1,           -1 },
+	/* class      instance       title               tags mask     isfloating   monitor */
+	{ "Ardour",      NULL,       NULL,                  0,            0,           -1 },
+	{ "firefox",     NULL,       NULL,                  1 << 0,       0,           -1 },
+	{ NULL,          NULL,       "Picture-in-Picture",  ~0,           1,           -1 },
+	{ "discord",     NULL,       NULL,                  1 << 1,       0,           -1 },
+	{ NULL,          NULL,       "Steam",               1 << 2,       0,           -1 },
+	{ "steam",       NULL,       "Steam",               1 << 2,       0,           -1 },
+	{ "steam",       NULL,       "Special Offers",      1 << 2,       1,           -1 },
+	{ "steam",       NULL,       "Steam - Browser",     1 << 2,       1,           -1 },
+	{ "Anki",        NULL,       NULL,                  1 << 3,       1,           -1 },
+	{ "Pavucontrol", NULL,       NULL,                  1 << 4,       0,           -1 },
+	{ "pavucontrol", NULL,       NULL,                  1 << 4,       0,           -1 },
+	{ "Gimp",        NULL,       NULL,                  0,            0,           -1 },
+	{ "keepassxc",   NULL,       NULL,                  0,            1,           -1 },
+	{ "mpv",         NULL,       NULL,                  0,            1,           -1 },
+	{ "Nsxiv",       NULL,       NULL,                  0,            1,           -1 },
+	{ "MEGAsync",    NULL,       NULL,                  0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -95,7 +100,7 @@ static const Key keys[] = {
 	/* modifier                     key                   function        argument */
 	{ MODKEY|ShiftMask,             XK_e,                 spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,            spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_n,                 spawn,          SHCMD("st nnn -HD") },
+	{ MODKEY,                       XK_n,                 spawn,          SHCMD("st nnn -HDd -T v") },
 	{ MODKEY|ShiftMask,             XK_x,                 spawn,          SHCMD("slock") },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,                 spawn,          SHCMD("killall -p dwm") },
 	{ MODKEY,                       XK_f,                 spawn,          SHCMD("$HOME/.scripts/sdfl") },
@@ -106,9 +111,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,                 incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,                 setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,                 setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return,            zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_Return,            zoom,           {0} },
 	{ MODKEY,                       XK_q,	              view,           {0} },
 	{ MODKEY,                       XK_Escape,            killclient,     {0} },
+	{ Mod1Mask,                     XK_F4,                killclient,     {0} },
 	{ MODKEY,                       XK_t,                 setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_s,                 setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,                 setlayout,      {.v = &layouts[2]} },
@@ -123,8 +129,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,             tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,            tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_minus,             setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,             setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,             setgaps,        {.i = 0  } },
+	{ MODKEY,                       XK_equal,             setgaps,        {.i = 0  } },
+	{ MODKEY|ShiftMask,             XK_equal,             setgaps,        {.i = +1 } },
 	{ Mod1Mask,            		XK_Tab,               altTabStart,    {0} },
 	{ MODKEY,                       XK_bracketleft,       shiftview,      { .i = +1 } },
 	{ MODKEY,                       XK_bracketright,      shiftview,      { .i = -1 } },
