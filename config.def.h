@@ -16,7 +16,10 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "Unifont:size=10:antialias=true:autohint=true","monospace:size=10","Noto Color Emoji:size=10","waffle:size=10" };
+static const char *fonts[]          = { "Unifont:size=10:antialias=true:autohint=true",
+                                        "monospace:size=10:antialias=true:autohint=true",
+                                        "Noto Color Emoji:size=10:antialias=true:autohint=true",
+                                        "waffle:size=14:antialias=true:autohint=true" };
 //static const char *fonts[]          = { "Noto Sans Mono CJK JP:size=10:antialias=true","Noto Color Emoji:size=10","monospace:size=10","waffle:size=10" };
 
 
@@ -58,6 +61,8 @@ static const Rule rules[] = {
 	{ "steam",       NULL,       "Steam",               1 << 2,       0,           -1 },
 	{ "steam",       NULL,       "Special Offers",      1 << 2,       1,           -1 },
 	{ "steam",       NULL,       "Steam - Browser",     1 << 2,       1,           -1 },
+	{ "Lutris",      NULL,       NULL,                  1 << 2,       0,           -1 },
+	{ "Lutris",      NULL,       "Add games to Lutris", 1 << 2,       1,           -1 },
 	{ "Anki",        NULL,       NULL,                  1 << 3,       1,           -1 },
 	{ "Pavucontrol", NULL,       NULL,                  1 << 4,       0,           -1 },
 	{ "pavucontrol", NULL,       NULL,                  1 << 4,       0,           -1 },
@@ -69,7 +74,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -132,9 +137,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_minus,             setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,             setgaps,        {.i = 0  } },
 	{ MODKEY|ShiftMask,             XK_equal,             setgaps,        {.i = +1 } },
-	{ Mod1Mask,            		XK_Tab,               altTabStart,    {0} },
-	{ MODKEY,                       XK_bracketleft,       shiftview,      { .i = +1 } },
-	{ MODKEY,                       XK_bracketright,      shiftview,      { .i = -1 } },
+	{ Mod1Mask,              		XK_Tab,               altTabStart,    {0} },
+	{ MODKEY,                       XK_bracketright,      shiftview,      { .i = +1 } },
+	{ MODKEY,                       XK_bracketleft,       shiftview,      { .i = -1 } },
 	{ MODKEY|Mod1Mask,              XK_q,                 quit,           {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
