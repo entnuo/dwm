@@ -101,12 +101,16 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "sh", "-c", "dmenu_run_history || dmenu_run", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *firefoxcmd[]  = { "firefox", NULL };
+static const char *firefoxPrivatecmd[]  = { "firefox", "--private-window", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key                   function        argument */
 	{ MODKEY|ShiftMask,             XK_e,                 spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,            spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_n,                 spawn,          SHCMD("st nnn -HDd -T v") },
+    { MODKEY,                       XK_w,                 spawn,          {.v = firefoxcmd} },
+    { MODKEY|ShiftMask,             XK_w,                 spawn,          {.v = firefoxPrivatecmd} },
+	{ MODKEY,                       XK_n,                 spawn,          SHCMD("st nnn -HDd -T c") },
 	{ MODKEY|ShiftMask,             XK_x,                 spawn,          SHCMD("slock") },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,                 spawn,          SHCMD("killall -p dwm") },
 	{ MODKEY,                       XK_f,                 spawn,          SHCMD("$HOME/.scripts/sdfl") },
