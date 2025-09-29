@@ -105,10 +105,10 @@ static const char *firefoxcmd[]  = { "firefox", NULL };
 static const char *firefoxPrivatecmd[]  = { "firefox", "--private-window", NULL };
 static const char *screenshotSelect[]  = { "scrot", "-s", 
                                          "-e",
-                                         "'xclip -selection clipboard -t image/png $f && notify-send \"Screenshot: $f taken\"'", 
+                                         "xclip -selection clipboard -t image/png $f && notify-send \"Screenshot: $f taken\"", 
                                          NULL };
 static const char *screenshotScreen[]  = { "scrot", "-e",
-                                         "'xclip -selection clipboard -t image/png $f && notify-send \"Screenshot: $f taken\"'",
+                                         "xclip -selection clipboard -t image/png $f && notify-send \"Screenshot: $f taken\"",
                                          NULL };
 
 static const Key keys[] = {
