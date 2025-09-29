@@ -103,17 +103,54 @@ static const char *dmenucmd[] = { "sh", "-c", "dmenu_run_history || dmenu_run", 
 static const char *termcmd[]  = { "st", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
 static const char *firefoxPrivatecmd[]  = { "firefox", "--private-window", NULL };
+static const char *screenshotSelect[]  = { "scrot", "-s", 
+                                         "-e",
+                                         "'xclip -selection clipboard -t image/png $f && notify-send \"Screenshot: $f taken\"'", 
+                                         NULL };
+static const char *screenshotScreen[]  = { "scrot", "-e",
+                                         "'xclip -selection clipboard -t image/png $f && notify-send \"Screenshot: $f taken\"'",
+                                         NULL };
 
 static const Key keys[] = {
 	/* modifier                     key                   function        argument */
-	{ MODKEY|ShiftMask,             XK_e,                 spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return,            spawn,          {.v = termcmd } },
     { MODKEY,                       XK_w,                 spawn,          {.v = firefoxcmd} },
     { MODKEY|ShiftMask,             XK_w,                 spawn,          {.v = firefoxPrivatecmd} },
 	{ MODKEY,                       XK_n,                 spawn,          SHCMD("st nnn -HDd -T c") },
 	{ MODKEY|ShiftMask,             XK_x,                 spawn,          SHCMD("slock") },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_q,                 spawn,          SHCMD("killall -p dwm") },
-	{ MODKEY,                       XK_f,                 spawn,          SHCMD("$HOME/.scripts/sdfl") },
+
+    // scripts
+    // NOTE: 0 in MODKEY means no MODKEY (NULL gives compiler time warning)
+    // TODO: organize this section of code for easy modification
+	{ MODKEY|ShiftMask,             XK_e,                      spawn,          {.v = dmenucmd } }, // dmenu with cache
+	{ MODKEY,                       XK_f,                      spawn,          SHCMD("$HOME/.scripts/sdfl") }, // simple dmenu file "manager" idk
+    { MODKEY|ShiftMask,             XK_g,                      spawn,          {.v = (const char*[]){ "powermenu", NULL } } },
+    { 0,                            XK_F1,                     spawn,          {.v = (const char*[]){ "volume", "tog", NULL } } }, // mute volume
+    { 0,                            XF86XK_AudioMute,          spawn,          {.v = (const char*[]){ "volume", "tog", NULL } } }, // mute volume
+    { 0,                            XK_F2,                     spawn,          {.v = (const char*[]){ "volume", "dec", NULL } } }, // dec volume by 2
+    { 0,                            XF86XK_AudioLowerVolume,   spawn,          {.v = (const char*[]){ "volume", "dec", NULL } } }, // dec volume by 2
+    { 0,                            XK_F3,                     spawn,          {.v = (const char*[]){ "volume", "inc", NULL } } }, // inc volume by 2
+    { 0,                            XF86XK_AudioRaiseVolume,   spawn,          {.v = (const char*[]){ "volume", "inc", NULL } } }, // inc volume by 2
+    { MODKEY,                       XK_F2,                     spawn,          {.v = (const char*[]){ "volume", "sdec", NULL } } }, // dec volume by 5
+    { MODKEY,                       XF86XK_AudioLowerVolume,   spawn,          {.v = (const char*[]){ "volume", "sdec", NULL } } }, // dec volume by 5
+    { MODKEY,                       XK_F3,                     spawn,          {.v = (const char*[]){ "volume", "sinc", NULL } } }, // inc volume by 5
+    { MODKEY,                       XF86XK_AudioRaiseVolume,   spawn,          {.v = (const char*[]){ "volume", "sinc", NULL } } }, // inc volume by 5
+    { MODKEY|ShiftMask,             XK_F3,                     spawn,          {.v = (const char*[]){ "volume", "abovemax", NULL } } }, // inc volume above 100
+    { MODKEY|ShiftMask,             XF86XK_AudioRaiseVolume,   spawn,          {.v = (const char*[]){ "volume", "abovemax", NULL } } }, // inc volume above 100
+    { 0,                            XK_F11,                    spawn,          {.v = (const char*[]){ "luz", "dec", NULL } } }, // dec brightness by 1
+    { 0,                            XF86XK_MonBrightnessDown,  spawn,          {.v = (const char*[]){ "luz", "dec", NULL } } }, // dec brightness by 1
+    { 0,                            XK_F12,                    spawn,          {.v = (const char*[]){ "luz", "inc", NULL } } }, // inc brightness by 1
+    { 0,                            XF86XK_MonBrightnessUp,    spawn,          {.v = (const char*[]){ "luz", "inc", NULL } } }, // inc brightness by 1
+    { MODKEY,                       XK_F11,                    spawn,          {.v = (const char*[]){ "luz", "sdec", NULL } } }, // dec brightness by 5
+    { MODKEY,                       XF86XK_MonBrightnessDown,  spawn,          {.v = (const char*[]){ "luz", "sdec", NULL } } }, // dec brightness by 5
+    { MODKEY,                       XK_F12,                    spawn,          {.v = (const char*[]){ "luz", "sinc", NULL } } }, // inc brightness by 5
+    { MODKEY,                       XF86XK_MonBrightnessUp,    spawn,          {.v = (const char*[]){ "luz", "sinc", NULL } } }, // inc brightness by 5
+    { 0,                            XK_Print,                  spawn,          {.v = screenshotSelect } },
+    { MODKEY,                       XK_Print,                  spawn,          {.v = screenshotScreen } },
+    { MODKEY|ShiftMask,             XK_k,                      spawn,          {.v = (const char*[]){ "killprocess", NULL } } },
+
+
 	{ MODKEY,                       XK_b,                 togglebar,      {0} },
 	{ MODKEY,                       XK_j,                 focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,                 focusstack,     {.i = -1 } },
