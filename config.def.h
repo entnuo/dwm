@@ -14,6 +14,8 @@ static const unsigned int gappx     = 6;        /* gaps between windows */
 static const unsigned int snap      = 8;        /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int vertpad            = 5;        /* vertical padding of bar */
+static const int sidepad            = 5;        /* horizontal padding of bar */
 static const int focusonwheel       = 0;
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 static const char *fonts[]          = { "Unifont:size=10:antialias=true:autohint=true",
@@ -34,9 +36,9 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
         "sh", "-c", "pgrep -x aslstatus && pkill aslstatus ; aslstatus", NULL,
-        "sh", "-c", "fcitx5 || fcitx", NULL,
         "sh", "-c", "${HOME}/.scripts/fehbg", NULL,
         "sh", "-c", "${HOME}/.scripts/welcome", NULL,
+        "sh", "-c", "pgrep -x fcitx5 > /dev/null || fcitx5", NULL,
         "sh", "-c", "pgrep -x pipewire > /dev/null || pipewire", NULL,
         "sh", "-c", "sleep 2 && pgrep -x sxhkd > /dev/null || sxhkd", NULL, // a small delay so sxhkd wont take dwm keybinds
 	NULL /* terminate */
